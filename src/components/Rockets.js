@@ -13,14 +13,14 @@ function Rockets() {
   useEffect(() => {
     if (rockets.length) return;
     dispatch(getRockets());
-  }, []);
+  }, [dispatch, rockets.length]);
 
   return (
     <div className="px-16">
       <div className="text-3xl text-blue-500">
         {isLoading && <div>Loading...</div>}
-        {rockets.length &&
-          rockets.map((rocket) => <Rocket key={rocket.id} rocket={rocket} />)}
+        {rockets.length
+          && rockets.map((rocket) => <Rocket key={rocket.id} rocket={rocket} />)}
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ function Rocket({ rocket }) {
       <img
         width={400}
         height="auto"
-        src={rocket.flickr_images[0]}
+        src={rocket.flickrImages[0]}
         alt="rocket"
       />
       <div className="flex flex-col justify-between items-start px-8 w-full">
@@ -33,6 +33,7 @@ function Rocket({ rocket }) {
         </p>
         {rocket.reserved ? (
           <button
+            type="button"
             onClick={handleCancelReserve}
             className="px-6 text-2xl py-3 text-slate-500 border-2 border-slate-500 rounded-md mt-4"
           >
@@ -40,6 +41,7 @@ function Rocket({ rocket }) {
           </button>
         ) : (
           <button
+            type="button"
             onClick={handleReserve}
             className="px-6 text-2xl py-3 bg-blue-500 text-white rounded-md mt-4"
           >

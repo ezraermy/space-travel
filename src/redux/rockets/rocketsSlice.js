@@ -12,37 +12,33 @@ export const getRockets = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_SPACE_X_API}/rockets`
+        `${process.env.REACT_APP_SPACE_X_API}/rockets`,
       );
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
     }
-  }
+  },
 );
 
 const rocketSlice = createSlice({
   name: 'rockets',
   initialState,
   reducers: {
-    reserve: (state, { payload }) => {
-      return {
-        ...state,
-        items: state.items.map((rocket) => {
-          return rocket.id === payload ? { ...rocket, reserved: true } : rocket;
-        }),
-      };
-    },
-    cancelReserve: (state, { payload }) => {
-      return {
-        ...state,
-        items: state.items.map((rocket) => {
-          return rocket.id === payload
-            ? { ...rocket, reserved: false }
-            : rocket;
-        }),
-      };
-    },
+    reserve: (state, { payload }) => ({
+      ...state,
+      items: state.items.map((rocket) => {
+        if (rocket.id === payload) return { ...rocket, reserved: true };
+        return rocket;
+      }),
+    }),
+    cancelReserve: (state, { payload }) => ({
+      ...state,
+      items: state.items.map((rocket) => {
+        if (rocket.id === payload) return { ...rocket, reserved: false };
+        return rocket;
+      }),
+    }),
   },
   extraReducers: (builder) => {
     builder.addCase(getRockets.pending, (state) => ({
@@ -58,15 +54,15 @@ const rocketSlice = createSlice({
           id,
           rocket_name: name,
           rocket_type: type,
-          flickr_images,
+          flickr_images: flickrImages,
           description,
         }) => ({
           id,
           name,
           type,
-          flickr_images,
+          flickrImages,
           description,
-        })
+        }),
       ),
       error: null,
     }));

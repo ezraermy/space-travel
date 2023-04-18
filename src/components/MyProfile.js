@@ -12,7 +12,7 @@ function MyProfile() {
   useEffect(() => {
     if (rockets.length) return;
     dispatch(getRockets());
-  }, []);
+  }, [dispatch, rockets.length]);
 
   return (
     <div className="px-16 grid grid-cols-2">
@@ -41,11 +41,14 @@ function MyProfile() {
           My Rockets
         </h2>
         <ul className="border rounded-md py-4 text-xl">
-          {rockets.length &&
-            rockets
+          {rockets.length
+            && rockets
               .filter((rocket) => rocket.reserved)
               .map((rocket) => (
-                <li className="border-b p-4 pt-2 pb-8 last-of-type:border-none">
+                <li
+                  key={rocket.id}
+                  className="border-b p-4 pt-2 pb-8 last-of-type:border-none"
+                >
                   {rocket.name}
                 </li>
               ))}
