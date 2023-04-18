@@ -20,9 +20,9 @@ function Rocket({ rocket }) {
         alt="rocket"
       />
       <div className="flex flex-col justify-between items-start px-8 w-full">
-        <h1 className="text-3xl font-semibold mb-4 text-slate-700">
+        <h2 className="text-3xl font-semibold mb-4 text-slate-700">
           {rocket.name}
-        </h1>
+        </h2>
         <p className="text-lg text-slate-700 font-semibold my-2">
           {rocket.reserved && (
             <span className="text-base text-white px-2 bg-cyan-600 font-semibold mr-2 rounded-md">
