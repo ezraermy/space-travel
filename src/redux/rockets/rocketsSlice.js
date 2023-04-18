@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  rockets: [],
+  items: [],
   isLoading: false,
   error: null,
 };
@@ -24,7 +24,26 @@ export const getRockets = createAsyncThunk(
 const rocketSlice = createSlice({
   name: 'rockets',
   initialState,
-  reducers: {},
+  reducers: {
+    reserve: (state, { payload }) => {
+      return {
+        ...state,
+        items: state.items.map((rocket) => {
+          return rocket.id === payload ? { ...rocket, reserved: true } : rocket;
+        }),
+      };
+    },
+    cancelReserve: (state, { payload }) => {
+      return {
+        ...state,
+        items: state.items.map((rocket) => {
+          return rocket.id === payload
+            ? { ...rocket, reserved: false }
+            : rocket;
+        }),
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getRockets.pending, (state) => ({
       ...state,
@@ -34,12 +53,19 @@ const rocketSlice = createSlice({
     builder.addCase(getRockets.fulfilled, (state, { payload }) => ({
       ...state,
       isLoading: false,
-      rockets: payload.map(
-        ({ id, rocket_name: name, rocket_type: type, flickr_images }) => ({
+      items: payload.map(
+        ({
+          id,
+          rocket_name: name,
+          rocket_type: type,
+          flickr_images,
+          description,
+        }) => ({
           id,
           name,
           type,
           flickr_images,
+          description,
         })
       ),
       error: null,
@@ -52,4 +78,5 @@ const rocketSlice = createSlice({
   },
 });
 
+export const { reserve, cancelReserve } = rocketSlice.actions;
 export default rocketSlice.reducer;

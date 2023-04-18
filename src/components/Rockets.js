@@ -1,18 +1,27 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRockets } from 'redux/rockets/rocketsSlice';
+import Rocket from './Rocket';
 
-function Rockets(props) {
-  const rockets = useSelector((store) => store.rockets);
+function Rockets() {
+  const [rockets, isLoading] = useSelector((store) => [
+    store.rockets.items,
+    store.rockets.isLoading,
+  ]);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (rockets.length) return;
     dispatch(getRockets());
   }, []);
 
   return (
     <div className="px-16">
-      <div className="text-3xl text-blue-500">Rockets</div>
+      <div className="text-3xl text-blue-500">
+        {isLoading && <div>Loading...</div>}
+        {rockets.length &&
+          rockets.map((rocket) => <Rocket key={rocket.id} rocket={rocket} />)}
+      </div>
     </div>
   );
 }
