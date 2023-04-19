@@ -3,7 +3,7 @@ import Navbar from 'components/Navbar';
 import { Outlet } from 'react-router-dom';
 
 const Layout = () => (
-  <div className="wrapper">
+  <div data-testid="layout" className="wrapper">
     <Navbar />
     <Outlet />
   </div>
