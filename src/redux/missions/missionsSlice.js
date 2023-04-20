@@ -66,17 +66,20 @@ const missionSlice = createSlice({
   },
 
   extraReducers: {
-    [fetchMissions.pending]: (state) => {
-      state.status = true;
-    },
-    [fetchMissions.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.isSucceed = true;
-      state.missions = action.payload;
-    },
-    [fetchMissions.rejected]: (state) => {
-      state.isLoading = false;
-    },
+    [fetchMissions.pending]: (state) => ({
+      ...state,
+      status: true,
+    }),
+    [fetchMissions.fulfilled]: (state, action) => ({
+      ...state,
+      isLoading: false,
+      isSucceed: true,
+      missions: action.payload,
+    }),
+    [fetchMissions.rejected]: (state) => ({
+      ...state,
+      isLoading: false,
+    }),
   },
 });
 
