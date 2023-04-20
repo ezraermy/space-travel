@@ -19,8 +19,10 @@ function Rockets() {
     <div className="px-16">
       <div className="text-3xl text-blue-500">
         {isLoading && <div>Loading...</div>}
-        {rockets.length
-          && rockets.map((rocket) => <Rocket key={rocket.id} rocket={rocket} />)}
+        {rockets.length &&
+          rockets.map((rocket) => (
+            <Rocket data-testid="rocket" key={rocket.id} rocket={rocket} />
+          ))}
       </div>
     </div>
   );
