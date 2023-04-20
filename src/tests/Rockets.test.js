@@ -1,8 +1,8 @@
 import React from 'react';
 import Rockets from 'components/Rockets';
-import { renderWithProviders } from './testUtils';
 import { act, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderWithProviders from './testUtils';
 
 describe('Tests for rockets component', () => {
   test('should fetch the rockets correctly', async () => {

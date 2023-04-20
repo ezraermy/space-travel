@@ -21,11 +21,9 @@ const Navbar = () => {
         {links.map((link) => (
           <li key={link.text}>
             <NavLink
-              className={({ isActive }) =>
-                `text-sky-600 font-semibold px-6 ${isActive && 'underline'} ${
-                  link.path === 'profile' && 'border-l-2'
-                }`
-              }
+              className={({ isActive }) => `text-sky-600 font-semibold px-6 ${isActive && 'underline'} ${
+                link.path === 'profile' && 'border-l-2'
+              }`}
               to={link.path}
             >
               {link.text}

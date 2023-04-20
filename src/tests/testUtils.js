@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 // As a basic setup, import your same slice reducers
 import rocketReducer from 'redux/rockets/rocketsSlice';
 
-export function renderWithProviders(
+export default function renderWithProviders(
   ui,
   {
     preloadedState = {},
@@ -15,7 +15,7 @@ export function renderWithProviders(
       preloadedState,
     }),
     ...renderOptions
-  } = {}
+  } = {},
 ) {
   function Wrapper({ children }) {
     return <Provider store={store}>{children}</Provider>;

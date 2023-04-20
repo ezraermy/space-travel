@@ -11,13 +11,13 @@ export const getRockets = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_SPACE_X_API}/rockets`
+        `${process.env.REACT_APP_SPACE_X_API}/rockets`,
       );
       return await response.json();
     } catch (error) {
       return rejectWithValue(error);
     }
-  }
+  },
 );
 
 const rocketSlice = createSlice({
@@ -61,7 +61,7 @@ const rocketSlice = createSlice({
           type,
           flickrImages,
           description,
-        })
+        }),
       ),
       error: null,
     }));

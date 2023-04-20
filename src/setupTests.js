@@ -20,10 +20,8 @@ const response = [
   },
 ];
 
-export const handlers = [
-  rest.get(`https://api.spacexdata.com/v3/rockets`, (req, res, ctx) => {
-    return res(ctx.json(response), ctx.delay(150));
-  }),
+const handlers = [
+  rest.get('https://api.spacexdata.com/v3/rockets', (req, res, ctx) => res(ctx.json(response), ctx.delay(150))),
 ];
 
 const server = setupServer(...handlers);
