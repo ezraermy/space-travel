@@ -9,7 +9,10 @@ const Navbar = () => {
     { path: 'profile', text: 'My Profile' },
   ];
   return (
-    <div className="navbar flex justify-between items-center mx-12 py-4 border-b">
+    <div
+      data-testid="navbar"
+      className="navbar flex justify-between items-center mx-12 py-4 border-b"
+    >
       <h1 className="nav-title flex items-center text-3xl font-bold text-cyan-500 pl-6">
         <img className="mr-4" src={Logo} width={48} height={48} alt="logo" />
         Space Travelers Hub

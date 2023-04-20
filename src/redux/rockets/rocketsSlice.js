@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 const initialState = {
   items: [],
@@ -11,10 +10,10 @@ export const getRockets = createAsyncThunk(
   'rocktes/getRockets',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
+      const response = await fetch(
         `${process.env.REACT_APP_SPACE_X_API}/rockets`,
       );
-      return response.data;
+      return await response.json();
     } catch (error) {
       return rejectWithValue(error);
     }

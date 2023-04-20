@@ -12,7 +12,7 @@ function Rocket({ rocket }) {
   };
 
   return (
-    <div className="flex justify-start items-start my-12">
+    <div className="flex justify-start items-start my-12" data-testid="rocket">
       <img
         width={400}
         height="auto"
