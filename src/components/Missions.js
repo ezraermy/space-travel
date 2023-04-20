@@ -31,7 +31,7 @@ const MissionList = () => {
     <div className="mx-auto max-w-8xl px-2 sm:px-6 lg:px-10 mt-6">
       <table className="w-full border-spacing-2">
         <thead>
-          <tr className="text-lg text-black-900 my-2">
+          <tr className="text-lg text-red-900 my-2">
             <th className="text-left py-2">Mission</th>
             <th className="text-left py-2 pl-5">Description</th>
             <th className="text-left py-2">Status</th>
