@@ -1,18 +1,28 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRockets } from 'redux/rockets/rocketsSlice';
+import { fetchMissions } from 'redux/missions/missionsSlice';
 
 function MyProfile() {
   const [rockets, isLoading] = useSelector((store) => [
     store.rockets.items,
     store.rockets.isLoading,
   ]);
+
+  const [missions] = useSelector((store) => [
+    store.missions.missions,
+    store.missions.isLoading,
+  ]);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (rockets.length) return;
     dispatch(getRockets());
-  }, [dispatch, rockets.length]);
+
+    if (missions.length) return;
+    dispatch(fetchMissions);
+  }, [dispatch, rockets.length, missions.length]);
 
   return (
     <div className="px-16 grid grid-cols-2">
@@ -22,18 +32,16 @@ function MyProfile() {
           My Missions
         </h2>
         <ul className="border rounded-md py-4 text-xl">
-          <li className="border-b p-4 pt-2 pb-8 last-of-type:border-none">
-            Telstar
-          </li>
-          <li className="border-b p-4 pt-2 pb-8 last-of-type:border-none">
-            SES
-          </li>
-          <li className="border-b p-4 pt-2 pb-8 last-of-type:border-none">
-            AsiaSat
-          </li>
-          <li className="border-b p-4 pt-2 pb-8 last-of-type:border-none">
-            ABS
-          </li>
+          {missions
+            .filter((mission) => mission.joined)
+            .map((mission) => (
+              <li
+                key={mission.missionID}
+                className="border-b p-4 pt-2 pb-8 last-of-type:border-none"
+              >
+                {mission.missionName}
+              </li>
+            ))}
         </ul>
       </div>
       <div className="p-4">
