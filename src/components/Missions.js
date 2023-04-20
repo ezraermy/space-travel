@@ -33,7 +33,7 @@ const MissionList = () => {
         <thead>
           <tr className="text-lg text-black-900 my-2">
             <th className="text-left py-2">Mission</th>
-            <th className="text-left py-2 pl-5">Description</th>
+            <th className="text-left py-2 pl-6">Description</th>
             <th className="text-left py-2">Status</th>
           </tr>
         </thead>
