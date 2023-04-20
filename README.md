@@ -149,7 +149,7 @@ To run tests, run the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- N/A
+- Improve UI, Page speed, Content rularity, etc...
 
 <p align="right"><a href="#readme-top">👆</a></p>
 
