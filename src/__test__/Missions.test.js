@@ -11,8 +11,8 @@ describe('missionsSlice', () => {
     store = mockStore({
       missions: {
         missions: [],
-        isSucceed: false,
         isLoading: false,
+        isSucceed: false,
         error: null,
       },
     });
